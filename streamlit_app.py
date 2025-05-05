@@ -38,6 +38,7 @@ st.write('The name of your smoothie will be: ', name_on_order)
 st.title(":cup_with_straw: Customize Your Smoothie :cup_with_straw:")
 st.write("Choose the fruits you want in your Smoothie!")
 
+st.write(f"DEBUG: Warehouse = '{sf_warehouse}'")
 session = Session.builder.configs(connection_parameters).create()
 session.use_warehouse(sf_warehouse)  # 👈 Ensure warehouse is activated
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
