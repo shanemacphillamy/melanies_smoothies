@@ -1,5 +1,6 @@
 # Import python packages
 import streamlit as st
+import pandas as pd
 import requests
 from snowflake.snowpark.functions import col
 from snowflake.snowpark import Session
@@ -44,6 +45,10 @@ session.use_warehouse(sf_warehouse)  # 👈 Ensure warehouse is activated
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'),col('SEARCH_ON'))
 # st.dataframe(data=my_dataframe, use_container_width=True)
 # st.stop()
+
+pd_df = my_dataframe.to_pandas()
+st.datframe(pd_df)
+st.stop()
 
 ingredients_list = st.multiselect(
     'Choose up to 5 ingredients:'
